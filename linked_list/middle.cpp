@@ -8,21 +8,19 @@ class Node{
         data=x;
         next=NULL;
     }
-    Node* reverse(Node* head){
+    Node* middleNode(Node* head)
+    {
+        Node* slow = head;
+        Node* fast = head;
+        while(fast && fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
 
-        Node* prev = NULL;
-        Node* curr = head;
-        while(curr){
-
-            Node* nextNode = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nextNode;
         }
-    
-
-        return prev;
+        return slow;
     }
+    
     void display(Node* head){
 
         while(head != NULL){
@@ -45,7 +43,7 @@ int main(){
     head -> next ->next =third;
     head -> next ->next -> next =fourth;
     head -> next ->next -> next-> next=fifth;
-    head= head->reverse(head);
-    head->display(head);
+    Node* middle=head->middleNode(head);
+    cout<<"Middle node: "<<middle->data;
     return 0;
 }
